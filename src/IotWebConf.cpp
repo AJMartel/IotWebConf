@@ -845,7 +845,7 @@ boolean IotWebConf::handleCaptivePortal()
     request->redirect((String("http://")+toStringIp(request->client()->localIP()).c_str()));
 #else    
     this->_server->sendHeader(
-      "Location", String("http://") + toStringIp(this->_server->client().localIP()), true);
+      "Location", String("http://") + toStringIp(this->_server->client().localIP()) + "/config", true);
     this->_server->send(302, "text/plain", ""); // Empty content inhibits Content-length header so we have to close the socket ourselves.
     this->_server->client().stop(); // Stop is needed because we sent no content length
 #endif
